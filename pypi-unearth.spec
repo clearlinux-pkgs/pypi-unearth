@@ -4,14 +4,15 @@
 # Using build pattern: pyproject
 #
 Name     : pypi-unearth
-Version  : 0.9.0
-Release  : 1
-URL      : https://files.pythonhosted.org/packages/df/be/bde216e1d98b98e1240c26233988dc60afad387bb7e3b9128b43058415a0/unearth-0.9.0.tar.gz
-Source0  : https://files.pythonhosted.org/packages/df/be/bde216e1d98b98e1240c26233988dc60afad387bb7e3b9128b43058415a0/unearth-0.9.0.tar.gz
+Version  : 0.9.1
+Release  : 2
+URL      : https://files.pythonhosted.org/packages/da/08/5a19c6195599eac32b01280081e6a3beb9bcbe47d4f40ba31471450b0e84/unearth-0.9.1.tar.gz
+Source0  : https://files.pythonhosted.org/packages/da/08/5a19c6195599eac32b01280081e6a3beb9bcbe47d4f40ba31471450b0e84/unearth-0.9.1.tar.gz
 Summary  : A utility to fetch and download python packages
 Group    : Development/Tools
 License  : MIT
 Requires: pypi-unearth-bin = %{version}-%{release}
+Requires: pypi-unearth-license = %{version}-%{release}
 Requires: pypi-unearth-python = %{version}-%{release}
 Requires: pypi-unearth-python3 = %{version}-%{release}
 BuildRequires : buildreq-distutils3
@@ -31,9 +32,18 @@ BuildRequires : pypi(pdm_pep517)
 %package bin
 Summary: bin components for the pypi-unearth package.
 Group: Binaries
+Requires: pypi-unearth-license = %{version}-%{release}
 
 %description bin
 bin components for the pypi-unearth package.
+
+
+%package license
+Summary: license components for the pypi-unearth package.
+Group: Default
+
+%description license
+license components for the pypi-unearth package.
 
 
 %package python
@@ -58,10 +68,10 @@ python3 components for the pypi-unearth package.
 
 
 %prep
-%setup -q -n unearth-0.9.0
-cd %{_builddir}/unearth-0.9.0
+%setup -q -n unearth-0.9.1
+cd %{_builddir}/unearth-0.9.1
 pushd ..
-cp -a unearth-0.9.0 buildavx2
+cp -a unearth-0.9.1 buildavx2
 popd
 
 %build
@@ -69,7 +79,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1683225663
+export SOURCE_DATE_EPOCH=1687798084
 export GCC_IGNORE_WERROR=1
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
@@ -93,6 +103,8 @@ popd
 %install
 export MAKEFLAGS=%{?_smp_mflags}
 rm -rf %{buildroot}
+mkdir -p %{buildroot}/usr/share/package-licenses/pypi-unearth
+cp %{_builddir}/unearth-%{version}/LICENSE %{buildroot}/usr/share/package-licenses/pypi-unearth/09a428a2d5dd8dd70f7cb16bc0cf47c43ddc20ae || :
 pip install --root=%{buildroot} --no-deps --ignore-installed dist/*.whl
 echo ----[ mark ]----
 cat %{buildroot}/usr/lib/python3*/site-packages/*/requires.txt || :
@@ -113,6 +125,10 @@ popd
 %files bin
 %defattr(-,root,root,-)
 /usr/bin/unearth
+
+%files license
+%defattr(0644,root,root,0755)
+/usr/share/package-licenses/pypi-unearth/09a428a2d5dd8dd70f7cb16bc0cf47c43ddc20ae
 
 %files python
 %defattr(-,root,root,-)
