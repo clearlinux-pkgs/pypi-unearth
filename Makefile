@@ -1,5 +1,5 @@
 PKG_NAME := pypi-unearth
-URL = https://files.pythonhosted.org/packages/b0/19/bf158ee4f8e320b312ce1ec23d34cd6a02341b3c802fcb6f4cad6e249c2a/unearth-0.9.3.tar.gz
+URL = https://files.pythonhosted.org/packages/d6/fb/366494a04d7331969be6113b043f9a721aaf329bb65db4cafa5c7ebd7951/unearth-0.10.0.tar.gz
 ARCHIVES = 
 
 include ../common/Makefile.common
