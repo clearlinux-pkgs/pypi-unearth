@@ -6,10 +6,10 @@
 # autospec commit: 5905be9
 #
 Name     : pypi-unearth
-Version  : 0.15.2
-Release  : 17
-URL      : https://files.pythonhosted.org/packages/4e/27/312c0976a8c35aca68b81bfd2cc3b5cc4b9c8901bfd1c9a6658ccee687b4/unearth-0.15.2.tar.gz
-Source0  : https://files.pythonhosted.org/packages/4e/27/312c0976a8c35aca68b81bfd2cc3b5cc4b9c8901bfd1c9a6658ccee687b4/unearth-0.15.2.tar.gz
+Version  : 0.15.3
+Release  : 18
+URL      : https://files.pythonhosted.org/packages/02/62/5ccbc89bf8a7cd2bf8ecec3a789ec2a77fc00c7bcf48f8e3077e1d094158/unearth-0.15.3.tar.gz
+Source0  : https://files.pythonhosted.org/packages/02/62/5ccbc89bf8a7cd2bf8ecec3a789ec2a77fc00c7bcf48f8e3077e1d094158/unearth-0.15.3.tar.gz
 Summary  : A utility to fetch and download python packages
 Group    : Development/Tools
 License  : MIT
@@ -70,10 +70,10 @@ python3 components for the pypi-unearth package.
 
 
 %prep
-%setup -q -n unearth-0.15.2
-cd %{_builddir}/unearth-0.15.2
+%setup -q -n unearth-0.15.3
+cd %{_builddir}/unearth-0.15.3
 pushd ..
-cp -a unearth-0.15.2 buildavx2
+cp -a unearth-0.15.3 buildavx2
 popd
 
 %build
@@ -81,7 +81,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1713458263
+export SOURCE_DATE_EPOCH=1716834848
 export GCC_IGNORE_WERROR=1
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
